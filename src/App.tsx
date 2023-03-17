@@ -1,7 +1,6 @@
 import React from "react";
 
-import "./App.css";
-
+import "./style/index.scss";
 function App() {
   return (
     <div className="App">
