@@ -1,17 +1,3 @@
-## Available Scripts
-
-### `npm start`
-
-### `npm test`
-
-### `npm run build`
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-<!-- Please update value in the {}  -->
-
 <h1 align="center">{Image Uploader}</h1>
 
 <div align="center">
@@ -63,8 +49,8 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Tailwind](https://tailwindcss.com/)
+- [Bootstrap](https://react-bootstrap.github.io/)
+- [Firebase](https://firebase.google.com/)
 
 ## Features
 
@@ -100,5 +86,5 @@ $ npm start
 ## Contact
 
 - Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/carmtsang})
+- GitHub [@carmtsang](https://{github.com/carmtsang})
 - Twitter [@your-twitter](https://{twitter.com/your-username})
