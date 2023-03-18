@@ -1,0 +1,30 @@
+.App {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  // background-color: ;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem; // for footer
+  margin: auto;
+  padding: 0.25rem;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-card {
+  background-color: #ffffff;
+  box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1);
+}

@@ -2,12 +2,14 @@ import React from "react";
 import CardBody from "./components/CardBody";
 import Footer from "./components/Footer";
 
-import "./style/index.scss";
+import "./style/App.scss";
 
 function App() {
   return (
     <div className="App">
-      <CardBody />
+      <div id="content-wrap">
+        <CardBody />
+      </div>
       <Footer />
     </div>
   );

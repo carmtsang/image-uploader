@@ -5,7 +5,7 @@ const TEXT = "HELLO WORLD!";
 
 const CardBody = () => {
   return (
-    <Card>
+    <Card border="light" className="content-card">
       <Card.Body>{TEXT}</Card.Body>
     </Card>
   );

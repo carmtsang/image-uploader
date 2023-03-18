@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  position: relative; }
+
+#content-wrap {
+  padding-bottom: 2.5rem; }
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+  align-items: center; }
