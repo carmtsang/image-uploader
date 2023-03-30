@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Image } from "react-bootstrap";
-
+import image from "../images/image.svg";
 const UPLOAD_TITLE = "Upload your image";
 const UPLOAD_DESCRIPTION = "File should be Jpeg, Png...";
 // const OR = "or";
@@ -13,8 +13,8 @@ const CardBody = () => {
       <Card.Title>{UPLOAD_TITLE}</Card.Title>
       <Card.Body>
         {UPLOAD_DESCRIPTION}
-        <div style={{ display: "block", width: 700, padding: 30 }}>
-          <Image src="/" />
+        <div>
+          <Image src={image} />
         </div>
         <Button variant="primary" onClick={handleSubmit}>
           Choose File
