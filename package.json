@@ -30,7 +30,9 @@
     "build": "npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +54,13 @@
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.3",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
     "dotenv": "^16.0.3",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
     "node-sass": "^7.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.7"
