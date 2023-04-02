@@ -1,13 +1,15 @@
 import React from 'react';
 import { useCallback, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { FileError, FileRejection, useDropzone } from 'react-dropzone';
+import SingleUploader from './SingleUploader';
 
 export interface UploadableFile {
   file: File;
   errors: FileError[];
 }
 
-export default function ImageUploader() {
+export default function MultiUploader() {
   const [files, setFiles] = useState<UploadableFile[]>([]);
 
   const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
@@ -15,13 +17,19 @@ export default function ImageUploader() {
     setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, open, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps({ style: {} })}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here</p>
-      {JSON.stringify(files)}
-    </div>
+    <>
+      <div {...getRootProps({ style: {} })}>
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here</p>
+        <Button onClick={open}>Choose a File</Button>
+      </div>
+
+      {files.map((fileWrapper) => (
+        <SingleUploader file={fileWrapper.file} />
+      ))}
+    </>
   );
 }
