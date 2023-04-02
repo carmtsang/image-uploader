@@ -8,34 +8,19 @@ export interface UploadableFile {
 
 export default function ImageUploader() {
   const [files, setFiles] = useState<UploadableFile[]>([]);
-  const { getRootProps, acceptedFiles, getInputProps } = useDropzone({
-    accept: { 'image/*': [] }
-  });
 
-  const onDrop = useCallback(
-    (acceptedFiles: File[], rejFiles: FileRejection[]) => {
-      const accepted = acceptedFiles.map((file) => ({ file, errors: [] }));
-      setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
-    },
-    []
-  );
+  const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
+    const accepted = accFiles.map((file) => ({ file, errors: [] }));
+    setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
+  }, []);
 
-  // const accepted = acceptedFiles.map((file: File) => (
-  //   <li key={file.path}>
-  //     {file.path} - {file.size} bytes
-  //   </li>
-  // ));
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <section className="container">
-      <div {...getRootProps({ style: {} })}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      </div>
-      <aside>
-        <h4>Files</h4>
-        {/* <ul>{accepted}</ul> */}
-      </aside>
-    </section>
+    <div {...getRootProps({ style: {} })}>
+      <input {...getInputProps()} />
+      <p>Drag 'n' drop some files here, or click to select files</p>
+      {JSON.stringify(files)}
+    </div>
   );
 }
