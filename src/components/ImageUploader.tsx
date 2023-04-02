@@ -1,22 +1,30 @@
-import { useCallback, useMemo, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import { useCallback, useState } from 'react';
+import { FileError, FileRejection, useDropzone } from 'react-dropzone';
+
+export interface UploadableFile {
+  file: File;
+  errors: FileError[];
+}
 
 export default function ImageUploader() {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<UploadableFile[]>([]);
   const { getRootProps, acceptedFiles, getInputProps } = useDropzone({
-    accept: { "image/*": [] },
+    accept: { 'image/*': [] }
   });
 
-  const onDrop = useCallback((acceptedFiles: []) => {
-    console.log(acceptedFiles);
-    // do something with the files
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[], rejFiles: FileRejection[]) => {
+      const accepted = acceptedFiles.map((file) => ({ file, errors: [] }));
+      setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
+    },
+    []
+  );
 
-  const accepted = acceptedFiles.map((file: {}) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
+  // const accepted = acceptedFiles.map((file: File) => (
+  //   <li key={file.path}>
+  //     {file.path} - {file.size} bytes
+  //   </li>
+  // ));
 
   return (
     <section className="container">
@@ -26,7 +34,7 @@ export default function ImageUploader() {
       </div>
       <aside>
         <h4>Files</h4>
-        <ul>{accepted}</ul>
+        {/* <ul>{accepted}</ul> */}
       </aside>
     </section>
   );
