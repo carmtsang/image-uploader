@@ -1,8 +1,8 @@
-import React from "react";
-import CardBody from "./components/CardBody";
-import Footer from "./components/Footer";
+import React from 'react';
+import CardBody from './components/CardBody';
+import Footer from './components/Footer';
 
-import "./style/App.scss";
+import './style/App.scss';
 
 function App() {
   return (

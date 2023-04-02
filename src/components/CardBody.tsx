@@ -7,7 +7,7 @@ const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 // const OR = "or";
 
 const CardBody = () => {
-  const handleSubmit = () => {};
+  const handleSubmit = () => console.log('Fire!');
 
   return (
     <Card border="light" className="content-card text-center">

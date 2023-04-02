@@ -30,8 +30,8 @@
     "build": "npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "eslintConfig": {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCallback, useState } from 'react';
 import { FileError, FileRejection, useDropzone } from 'react-dropzone';
 
@@ -19,7 +20,7 @@ export default function ImageUploader() {
   return (
     <div {...getRootProps({ style: {} })}>
       <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
+      <p>Drag 'n' drop some files here</p>
       {JSON.stringify(files)}
     </div>
   );

@@ -8,7 +8,6 @@
     "react-app",
     "react-app/jest",
     "eslint:recommended",
-    "plugin:react/recommended",
     "prettier",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
@@ -21,7 +20,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-console": 1,
+    "no-console": 0,
     "prettier/prettier": 2,
     "react/no-unescaped-entities": 0,
     "react/react-in-jsx-scope": 0
