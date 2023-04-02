@@ -1,26 +1,21 @@
 import React from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 import image from '../images/image.svg';
-import ImageUploader from './ImageUploader';
+import MultiUploader from './upload/MultiUploader';
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 // const OR = "or";
 
 const CardBody = () => {
-  const handleSubmit = () => console.log('Fire!');
-
   return (
     <Card border="light" className="content-card text-center">
       <Card.Title>{UPLOAD_TITLE}</Card.Title>
       <Card.Body>
-        <ImageUploader />
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">
           <Image src={image} />
+          <MultiUploader />
         </div>
-        <Button variant="primary" onClick={handleSubmit}>
-          Choose File
-        </Button>
       </Card.Body>
     </Card>
   );
