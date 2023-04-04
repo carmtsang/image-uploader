@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface SingleUploaderProps {
   file: File;
@@ -6,6 +6,7 @@ export interface SingleUploaderProps {
 
 const uploadFile = (file: File, onProgress: (percentage: number) => void) => {
   const url = '...';
+  const key = '....';
   return new Promise((res, rej) => {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
@@ -23,15 +24,17 @@ const uploadFile = (file: File, onProgress: (percentage: number) => void) => {
     };
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('');
+    formData.append('upload_preset', key);
     xhr.send(formData);
   });
 };
 
 export default function SingleUploader({ file }: SingleUploaderProps) {
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
-    const upload = () => {
-      const url = await uploadFile(file);
+    const upload = async () => {
+      const url = await uploadFile(file, setProgress);
+      onUpload(file, url);
     };
 
     upload();
