@@ -9,7 +9,7 @@ export interface UploadableFile {
   errors: FileError[];
 }
 
-export default function MultiUploader() {
+export default function Uploader() {
   const [files, setFiles] = useState<UploadableFile[]>([]);
 
   const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
