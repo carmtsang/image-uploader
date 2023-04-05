@@ -32,11 +32,14 @@
   box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
-.dropzone {
+.drop-area {
   background: #f6f8fb;
   height: 219px;
   width: 338px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 12px;
+  border: dashed #97bef4;
+  border-width: 1px;
 }

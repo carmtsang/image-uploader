@@ -5,7 +5,6 @@ import Uploader from './upload/Uploader';
 
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
-// const OR = "or";
 
 const CardBody = () => {
   return (
