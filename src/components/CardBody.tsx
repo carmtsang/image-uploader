@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Image } from 'react-bootstrap';
-import image from '../images/image.svg';
-import MultiUploader from './upload/MultiUploader';
+import { Card } from 'react-bootstrap';
+
+import Uploader from './upload/Uploader';
+
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 // const OR = "or";
@@ -13,8 +14,7 @@ const CardBody = () => {
       <Card.Body>
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">
-          <Image src={image} />
-          <MultiUploader />
+          <Uploader />
         </div>
       </Card.Body>
     </Card>
