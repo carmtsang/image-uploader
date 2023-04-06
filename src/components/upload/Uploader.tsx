@@ -15,9 +15,13 @@ export interface UploadableFile {
 
 export default function Uploader() {
   const [files, setFiles] = useState<UploadableFile[]>([]);
+  const [url, setURL] = useState(null);
 
-  console.log(db);
-  console.log(storage);
+  const handleUpload = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    // write upload file here
+  };
+
   const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
     const accepted = accFiles.map((file) => ({ file, errors: [] }));
     setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
@@ -29,10 +33,9 @@ export default function Uploader() {
     <>
       <div className="drop-area" {...getRootProps()}>
         <input {...getInputProps()} />
+        <Image id="upload-box-image" src={image} />
         <p>Drag 'n' drop some files here</p>
-        <Image src={image} />
       </div>
-
       <p>{OR}</p>
       <Button onClick={open}>Choose a File</Button>
 
