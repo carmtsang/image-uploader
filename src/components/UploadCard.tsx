@@ -6,7 +6,7 @@ import Uploader from './upload/Uploader';
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 
-const CardBody = () => {
+const UploadCard = ({ setProgress }) => {
   return (
     <Card border="light" className="content-card text-center">
       <Card.Title>{UPLOAD_TITLE}</Card.Title>
