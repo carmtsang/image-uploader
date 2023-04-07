@@ -27,34 +27,19 @@ export interface UploadableFile {
 
 export default function Uploader({ setProgress }: UploaderProp) {
   const [files, setFiles] = useState<UploadableFile[]>([]);
-  const [file, setFile] = useState<File | undefined>(undefined);
+  // const [file, setFile] = useState<File | undefined>(undefined);
   const [url, setURL] = useState(null);
 
-  // const handleUpload = async () => {
-  //   if (!file) {
-  //     console.log('upload file');
-  //   }
-  //   const storageRef = ref(storage, `/files/${file.name}`);
-  //   const uploadFile = uploadBytesResumable(storageRef, file);
-
-  //   uploadFile.on('state_changed', (item) => {
-  //     const percentage = Math.round(
-  //       (item.bytesTransferred / item.totalBytes) * 100
-  //     );
-  //     setProgress(percentage);
-  //     (err) => console.log(err);
-  //     () =>
-  //       getDownloadURL(uploadFile.snapshot.ref).then((url) => console.log(url));
-  //   });
-  // await Promise.all(a
-  //   files.map((file) => {
-  //     const imageRef = ref(storage, `posts/${docRef.id}/${image.path}`)
-  //     uploadBytes(imageRef, image, "data_url").then( async () => {
-  //       await const downloadURL = await getDownloadURL(imageRef)
-  //     })
-  //   })
-  // )
-  // };
+  const handleUpload = async (e: React.SyntheticEvent) => {
+    if (!storage) return;
+    const storageRef = ref('images');
+    try {
+      await storageRef.child(files[0].file.name).put(files[0])
+     } catch (e) {
+      console.log('error', e);
+    }
+    }
+  };
 
   // const handleFile = (e: React.SyntheticEvent) => {
 
@@ -62,7 +47,7 @@ export default function Uploader({ setProgress }: UploaderProp) {
 
   const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
     const accepted = accFiles.map((file) => ({ file, errors: [] }));
-
+    
     setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
   }, []);
 

@@ -30,13 +30,5 @@ const uploadFile = (file: File, onProgress: (percentage: number) => void) => {
 };
 
 export default function SingleUploader({ file }: SingleUploaderProps) {
-  useEffect(() => {
-    const upload = async () => {
-      const url = await uploadFile(file, setProgress);
-      // onUpload(file, url);
-    };
-
-    upload();
-  }, []);
   return <>{file.name}</>;
 }

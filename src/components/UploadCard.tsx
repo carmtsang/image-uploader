@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Card } from 'react-bootstrap';
 
 import Uploader from './upload/Uploader';
@@ -11,15 +11,17 @@ export interface UploaderProp {
 }
 
 export default function UploadCard({ setProgress }: UploaderProp) {
+  const [preview, setPreview] = useState();
   return (
     <Card border="light" className="content-card text-center">
       <Card.Title>{UPLOAD_TITLE}</Card.Title>
-      <Card.Body>
+      <Card.Body id="upload-section">
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">
           <Uploader />
         </div>
       </Card.Body>
+      <Card.Body id="preview-secton"></Card.Body>
     </Card>
   );
 }
