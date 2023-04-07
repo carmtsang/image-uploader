@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export interface SingleUploaderProps {
   file: File;
@@ -30,14 +30,13 @@ const uploadFile = (file: File, onProgress: (percentage: number) => void) => {
 };
 
 export default function SingleUploader({ file }: SingleUploaderProps) {
-  const [progress, setProgress] = useState(0);
   useEffect(() => {
     const upload = async () => {
       const url = await uploadFile(file, setProgress);
-      onUpload(file, url);
+      // onUpload(file, url);
     };
 
     upload();
   }, []);
-  return <>Hello</>;
+  return <>{file.name}</>;
 }

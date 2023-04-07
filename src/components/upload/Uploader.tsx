@@ -5,6 +5,8 @@ import { FileError, FileRejection, useDropzone } from 'react-dropzone';
 import image from '../../images/image.svg';
 import SingleUploader from './SingleUploader';
 import { db, storage } from '../../firebase/firebaseSetup';
+import { addDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const OR = 'or';
 
@@ -17,17 +19,24 @@ export default function Uploader() {
   const [files, setFiles] = useState<UploadableFile[]>([]);
   const [url, setURL] = useState(null);
 
-  const handleUpload = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // write upload file here
+  const handleUpload = async () => {
+    const fileRef = await addDoc(collection(db, 'images'), {});
   };
+
+  // const handleFile = (e: React.SyntheticEvent) => {
+
+  // }
 
   const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
     const accepted = accFiles.map((file) => ({ file, errors: [] }));
+
     setFiles((curr) => [...curr, ...accepted, ...rejFiles]);
   }, []);
 
-  const { getRootProps, open, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, open, getInputProps } = useDropzone({
+    onDrop,
+    multiple: true
+  });
 
   return (
     <>
