@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Card } from 'react-bootstrap';
 
 import Uploader from './upload/Uploader';
@@ -6,7 +6,11 @@ import Uploader from './upload/Uploader';
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 
-const UploadCard = ({ setProgress }) => {
+export interface UploaderProp {
+  setProgress?: Dispatch<SetStateAction<number>>;
+}
+
+export default function UploadCard({ setProgress }: UploaderProp) {
   return (
     <Card border="light" className="content-card text-center">
       <Card.Title>{UPLOAD_TITLE}</Card.Title>
@@ -18,6 +22,4 @@ const UploadCard = ({ setProgress }) => {
       </Card.Body>
     </Card>
   );
-};
-
-export default CardBody;
+}

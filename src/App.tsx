@@ -6,7 +6,7 @@ import './style/App.scss';
 import LoadingCard from './components/LoadingCard';
 
 function App() {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState<number>(0);
 
   return (
     <div className="App">
