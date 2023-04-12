@@ -1,4 +1,4 @@
-import React, { Dispatch, Fragment, SetStateAction } from 'react';
+import React, { Fragment } from 'react';
 import { useCallback, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import { FileError, FileRejection, useDropzone } from 'react-dropzone';

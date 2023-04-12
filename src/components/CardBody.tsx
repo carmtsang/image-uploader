@@ -5,9 +5,9 @@ import LoadingCard from './LoadingCard';
 import SuccessfulCard from './SuccessfulCard';
 
 export default function CardBody() {
-  const [progress, setProgress] = useState<number>(0);
-  const [cardBody, setCardBody] = useState<number>(0);
-  const [url, setURL] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [cardBody, setCardBody] = useState(0);
+  const [urls, setUrls] = useState([]);
 
   return (
     <Card border="light" className="content-card text-center">
