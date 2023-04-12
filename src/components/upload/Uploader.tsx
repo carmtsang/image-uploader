@@ -10,30 +10,26 @@ import { UploaderProp } from '../UploadCard';
 
 const OR = 'or';
 
-// export interface UploaderProp {
-//   setProgress?: Dispatch<SetStateAction<number>>;
-// }
-
 export interface UploadableFile {
   file: File;
 }
 
-const handleUpload = (files: File[]) => {
-  if (!files.length) return;
-
-  files.map((file) => {
-    const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
-    return uploadBytes(imageRef, file).then(() => {
-      console.log('uploaded');
-    });
-  });
-};
-
-export default function Uploader({ setProgress }: UploaderProp) {
+export default function Uploader({ setProgress, setCardBody }: UploaderProp) {
   const [selectedFiles, setSelectedFiles] = useState<UploadableFile[]>([]);
 
   const resetUploader = () => {
     setSelectedFiles([]);
+  };
+
+  const handleUpload = (files: File[]) => {
+    if (!files.length) return;
+
+    files.map((file) => {
+      const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
+      return uploadBytes(imageRef, file).then(() => {
+        console.log('uploaded');
+      });
+    });
   };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
