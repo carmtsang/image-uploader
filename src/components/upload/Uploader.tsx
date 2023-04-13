@@ -14,7 +14,11 @@ export interface UploadableFile {
   file: File;
 }
 
-export default function Uploader({ setProgress, setCardBody }: UploaderProp) {
+export default function Uploader({
+  setProgress,
+  setCardBody,
+  setUrls
+}: UploaderProp) {
   const [selectedFiles, setSelectedFiles] = useState<UploadableFile[]>([]);
 
   const resetUploader = () => {
@@ -27,7 +31,9 @@ export default function Uploader({ setProgress, setCardBody }: UploaderProp) {
     files.map((file) => {
       const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
       return uploadBytes(imageRef, file).then(() => {
-        console.log('uploaded');
+        getDownloadURL(item).then((url) => {
+          setUrls((prev) => [...prev, url]);
+        });
       });
     });
   };

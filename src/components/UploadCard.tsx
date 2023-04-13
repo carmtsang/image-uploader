@@ -10,9 +10,14 @@ const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 export interface UploaderProp {
   setProgress?: Dispatch<SetStateAction<number>>;
   setCardBody?: Dispatch<SetStateAction<number>>;
+  setUrls?: Dispatch<SetStateAction<string[]>>;
 }
 
-export default function UploadCard({ setProgress, setCardBody }: UploaderProp) {
+export default function UploadCard({
+  setProgress,
+  setCardBody,
+  setUrls
+}: UploaderProp) {
   const setLoading = () => setCardBody(1);
   return (
     <>
@@ -20,7 +25,11 @@ export default function UploadCard({ setProgress, setCardBody }: UploaderProp) {
       <Card.Body id="upload-section">
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">
-          <Uploader setProgress={setProgress} setCardBody={setCardBody} />
+          <Uploader
+            setProgress={setProgress}
+            setCardBody={setCardBody}
+            setUrls={setUrls}
+          />
         </div>
         <Button onClick={() => setLoading()}>To Loading</Button>
       </Card.Body>
