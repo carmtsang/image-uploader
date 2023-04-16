@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CardBody from './components/CardBody';
 import Footer from './components/Footer';
 
