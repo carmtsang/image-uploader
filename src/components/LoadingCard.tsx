@@ -3,12 +3,14 @@ const LOADING = 'Loading...';
 
 export interface LoadingProp {
   now: number;
+  cardBody: number;
 }
-export default function LoadingCard({ now }: LoadingProp) {
+export default function LoadingCard({ now, cardBody }: LoadingProp) {
   return (
     <>
       <Card.Title>{LOADING}</Card.Title>
-      <ProgressBar now={now} />;
+      <p>{cardBody}</p>
+      <ProgressBar now={now} />
     </>
   );
 }

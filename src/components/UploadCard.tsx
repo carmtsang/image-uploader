@@ -1,24 +1,22 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import React, { Dispatch, SetStateAction } from 'react';
+import { Button, Card } from 'react-bootstrap';
 
 import Uploader from './upload/Uploader';
-import { Button } from 'react-bootstrap/lib/InputGroup';
 
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 
 export interface UploaderProp {
   setProgress?: Dispatch<SetStateAction<number>>;
-  setCardBody?: Dispatch<SetStateAction<number>>;
+  handleCardChange: (num: number) => void;
   setUrls?: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function UploadCard({
   setProgress,
-  setCardBody,
+  handleCardChange,
   setUrls
 }: UploaderProp) {
-  const setLoading = () => setCardBody(1);
   return (
     <>
       <Card.Title>{UPLOAD_TITLE}</Card.Title>
@@ -27,11 +25,11 @@ export default function UploadCard({
         <div className="image-uploader">
           <Uploader
             setProgress={setProgress}
-            setCardBody={setCardBody}
+            handleCardChange={handleCardChange}
             setUrls={setUrls}
           />
+          <Button onClick={() => handleCardChange(1)}>To Loading</Button>
         </div>
-        <Button onClick={() => setLoading()}>To Loading</Button>
       </Card.Body>
       <Card.Body id="preview-secton"></Card.Body>
     </>
