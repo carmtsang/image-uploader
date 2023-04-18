@@ -10,7 +10,14 @@ export default function SuccessfulCard({ urls }: SuccessfulProps) {
   return (
     <>
       <p>{SUCCESSFUL_MESSAGE}</p>
-      <Image />
+      <Image src="" />
+      {urls.length > 0 && (
+        <ul>
+          {urls.map((url) => (
+            <li key={url}>{url}</li>
+          ))}
+        </ul>
+      )}
       <input type="text" />
     </>
   );
