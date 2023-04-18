@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import UploadCard from './UploadCard';
 import LoadingCard from './LoadingCard';
 import SuccessfulCard from './SuccessfulCard';

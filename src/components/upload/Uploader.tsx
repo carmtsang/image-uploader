@@ -5,7 +5,7 @@ import { FileError, FileRejection, useDropzone } from 'react-dropzone';
 import uploadImage from '../../images/image.svg';
 // import SingleUploader from './SingleUploader';
 import { db, storage } from '../../firebase/firebaseSetup';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { UploaderProp } from '../UploadCard';
 
 const OR = 'or';
@@ -26,14 +26,15 @@ export default function Uploader({
   };
 
   const handleUpload = (files: File[]) => {
-    if (!files.length) return;
+    if (!files.length || files === null) return;
 
-    files.map((file) => {
+    return files.map((file) => {
       const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
-      return uploadBytes(imageRef, file).then(() => {
-        // getDownloadURL(item).then((url) => {
-        //   setUrls((prev) => [...prev, url]);
-        // });
+      uploadBytesResumable(imageRef, file).then(() => {
+        getDownloadURL(imageRef).then((url) =>
+          setUrls((prev) => [...prev, url])
+        );
+        console.log('uploaded');
       });
     });
   };
@@ -44,7 +45,7 @@ export default function Uploader({
     try {
       handleUpload(acceptedFiles);
     } catch (e) {
-      console.log(`Could not upload file. ${e}`);
+      console.log(`error: ${e}`);
     } finally {
       resetUploader();
     }

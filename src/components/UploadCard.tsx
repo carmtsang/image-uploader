@@ -7,9 +7,9 @@ const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 
 export interface UploaderProp {
-  setProgress?: Dispatch<SetStateAction<number>>;
+  setProgress: Dispatch<SetStateAction<number>>;
   handleCardChange: (num: number) => void;
-  setUrls?: Dispatch<SetStateAction<string[]>>;
+  setUrls: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function UploadCard({
@@ -28,7 +28,6 @@ export default function UploadCard({
             handleCardChange={handleCardChange}
             setUrls={setUrls}
           />
-          <Button onClick={() => handleCardChange(1)}>To Loading</Button>
         </div>
       </Card.Body>
       <Card.Body id="preview-secton"></Card.Body>
