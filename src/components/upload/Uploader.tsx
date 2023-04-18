@@ -25,20 +25,40 @@ export default function Uploader({
     setSelectedFiles([]);
   };
 
-  const handleUpload = (files: File[]) => {
-    if (!files.length || files === null) return;
+  // const handleUpload = (files: File[]) => {
+  //   if (!files.length || files === null) return;
 
-    return files.forEach((file) => {
-      const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
-      uploadBytesResumable(imageRef, file)
-        .then(() =>
-          getDownloadURL(imageRef).then((url) =>
-            setUrls((prev) => [...prev, url])
-          )
-        )
-        .catch((e) => console.error(e))
-        .finally(() => console.log('uploaded'));
-    });
+  //   return files.forEach((file) => {
+  //     const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
+  //     uploadBytesResumable(imageRef, file)
+  //       .then(() =>
+  //         getDownloadURL(imageRef).then((url) =>
+  //           setUrls((prev) => [...prev, url])
+  //         )
+  //       )
+  //       .catch((e) => console.error(e))
+  //       .finally(() => console.log('uploaded'));
+  //   });
+  // };
+
+  const handleUpload = async (files: File[]) => {
+    try {
+      if (!files.length || files === null) return;
+      await Promise.all(
+        files.map(async (file) => {
+          const imageRef = ref(
+            storage,
+            `images/${file.lastModified}${file.name}`
+          );
+          await uploadBytesResumable(imageRef, file);
+          const url = await getDownloadURL(imageRef);
+          setUrls((prev) => [...prev, url]);
+          console.log('uploaded');
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
