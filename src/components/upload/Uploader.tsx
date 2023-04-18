@@ -28,27 +28,23 @@ export default function Uploader({
   const handleUpload = (files: File[]) => {
     if (!files.length || files === null) return;
 
-    return files.map((file) => {
+    return files.forEach((file) => {
       const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
-      uploadBytesResumable(imageRef, file).then(() => {
-        getDownloadURL(imageRef).then((url) =>
-          setUrls((prev) => [...prev, url])
-        );
-        console.log('uploaded');
-      });
+      uploadBytesResumable(imageRef, file)
+        .then(() =>
+          getDownloadURL(imageRef).then((url) =>
+            setUrls((prev) => [...prev, url])
+          )
+        )
+        .catch((e) => console.error(e))
+        .finally(() => console.log('uploaded'));
     });
   };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const accepted = acceptedFiles.map((file) => ({ file }));
     setSelectedFiles((curr) => [...curr, ...accepted]);
-    try {
-      handleUpload(acceptedFiles);
-    } catch (e) {
-      console.log(`error: ${e}`);
-    } finally {
-      resetUploader();
-    }
+    handleUpload(acceptedFiles);
   }, []);
 
   const { getRootProps, open, getInputProps, acceptedFiles } = useDropzone({
