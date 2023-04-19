@@ -1,4 +1,5 @@
-import { Image } from 'react-bootstrap';
+import { Fragment } from 'react';
+import { Image, InputGroup, Button, Form } from 'react-bootstrap';
 
 const SUCCESSFUL_MESSAGE = 'Uploaded Successfully!';
 
@@ -10,15 +11,17 @@ export default function SuccessfulCard({ urls }: SuccessfulProps) {
   return (
     <>
       <p>{SUCCESSFUL_MESSAGE}</p>
-      <Image src="" />
-      {urls.length > 0 && (
-        <ul>
-          {urls.map((url) => (
-            <li key={url}>{url}</li>
-          ))}
-        </ul>
-      )}
-      <input type="text" />
+
+      {urls.length > 0 &&
+        urls.map((url) => (
+          <Fragment key={url}>
+            <Image src={url} alt="uploaded image" />
+            <InputGroup className="mb-3">
+              <Form.Control value={url} />
+              <Button variant="primary">Copy</Button>
+            </InputGroup>
+          </Fragment>
+        ))}
     </>
   );
 }

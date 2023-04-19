@@ -58,6 +58,8 @@ export default function Uploader({
       );
     } catch (error) {
       console.error(error);
+    } finally {
+      handleCardChange(2);
     }
   };
 
