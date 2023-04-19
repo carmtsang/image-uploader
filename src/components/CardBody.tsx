@@ -13,13 +13,15 @@ export default function CardBody() {
 
   return (
     <Card border="light" className="content-card text-center">
-      <UploadCard
-        setProgress={setProgress}
-        setUrls={setUrls}
-        handleCardChange={handleCardChange}
-      />
-      <LoadingCard now={progress} cardBody={cardBody} />
-      <SuccessfulCard urls={urls} />
+      {cardBody === 0 && (
+        <UploadCard
+          setProgress={setProgress}
+          setUrls={setUrls}
+          handleCardChange={handleCardChange}
+        />
+      )}
+      {cardBody === 1 && <LoadingCard now={progress} cardBody={cardBody} />}
+      {cardBody === 2 && <SuccessfulCard urls={urls} />}
     </Card>
   );
 }
