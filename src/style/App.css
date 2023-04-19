@@ -24,8 +24,7 @@
 .content-card {
   background-color: #ffffff;
   padding: 1rem;
-  width: 402px;
-  height: 469px;
+  max-width: 402px;
   box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1); }
 
 .drop-area {
@@ -43,3 +42,8 @@
 #upload-box-image {
   padding-top: 2rem;
   padding-bottom: 2.25rem; }
+
+.uploaded-img {
+  max-width: 338px;
+  border-radius: 12px;
+  margin: 1.5rem 0; }

@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { useCallback, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import { FileError, FileRejection, useDropzone } from 'react-dropzone';
-import uploadImage from '../../images/image.svg';
-// import SingleUploader from './SingleUploader';
+import UploadImage from '../../images/image.svg';
+
 import { db, storage } from '../../firebase/firebaseSetup';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { UploaderProp } from '../UploadCard';
@@ -21,6 +21,7 @@ export default function Uploader({
 }: UploaderProp) {
   const [selectedFiles, setSelectedFiles] = useState<UploadableFile[]>([]);
 
+  // for previewing upload before hand. Do i want to implement this...
   const resetUploader = () => {
     setSelectedFiles([]);
   };
@@ -78,7 +79,7 @@ export default function Uploader({
     <>
       <div className="drop-area" {...getRootProps()}>
         <input {...getInputProps()} />
-        <Image id="upload-box-image" src={uploadImage} alt="drop area" />
+        <Image id="upload-box-image" src={UploadImage} alt="drop area" />
         <p>Drag 'n' drop some files here</p>
       </div>
       <p>{OR}</p>

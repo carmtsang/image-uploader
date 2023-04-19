@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 import Uploader from './upload/Uploader';
 
@@ -19,7 +19,7 @@ export default function UploadCard({
 }: UploaderProp) {
   return (
     <>
-      <Card.Title>{UPLOAD_TITLE}</Card.Title>
+      <Card.Title className="card-title">{UPLOAD_TITLE}</Card.Title>
       <Card.Body id="upload-section">
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">
