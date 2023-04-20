@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Image, InputGroup, Button, Form, Card } from 'react-bootstrap';
-import DoneCheck from '../images/done_FILL0_wght400_GRAD0_opsz48.svg';
+import DoneCheck from '../images/done_FILL1_wght600_GRAD0_opsz48.svg';
 const SUCCESSFUL_MESSAGE = 'Uploaded Successfully!';
 
 export interface SuccessfulProps {
@@ -14,7 +14,7 @@ const handleCopy = (url: string) => {
 export default function SuccessfulCard({ urls }: SuccessfulProps) {
   return (
     <>
-      <Image src={DoneCheck} />
+      <Image src={DoneCheck} className="done-check" />
       <Card.Title className="card-title">{SUCCESSFUL_MESSAGE}</Card.Title>
       {urls.length > 0 &&
         urls.map((url, index) => (
