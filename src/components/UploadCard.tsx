@@ -19,7 +19,7 @@ export default function UploadCard({
 }: UploaderProp) {
   return (
     <>
-      <Card.Title className="card-title">{UPLOAD_TITLE}</Card.Title>
+      <Card.Title>{UPLOAD_TITLE}</Card.Title>
       <Card.Body id="upload-section">
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">

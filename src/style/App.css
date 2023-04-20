@@ -23,8 +23,8 @@
 
 .content-card {
   background-color: #ffffff;
-  padding: 1rem;
-  max-width: 402px;
+  padding: 2rem;
+  width: 402px;
   box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1); }
 
 .drop-area {
@@ -51,4 +51,9 @@
 .done-check {
   background-color: green;
   border-radius: 50%;
-  width: 2.5rem; }
+  width: 2.5rem;
+  align-self: center;
+  margin: 1.5rem 0 1rem 0; }
+
+.loading {
+  align-self: flex-start; }

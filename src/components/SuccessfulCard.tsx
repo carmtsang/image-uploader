@@ -15,7 +15,7 @@ export default function SuccessfulCard({ urls }: SuccessfulProps) {
   return (
     <>
       <Image src={DoneCheck} className="done-check" />
-      <Card.Title className="card-title">{SUCCESSFUL_MESSAGE}</Card.Title>
+      <Card.Title>{SUCCESSFUL_MESSAGE}</Card.Title>
       {urls.length > 0 &&
         urls.map((url, index) => (
           <Fragment key={url}>

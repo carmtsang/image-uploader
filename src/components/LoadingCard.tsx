@@ -8,8 +8,7 @@ export interface LoadingProp {
 export default function LoadingCard({ now, cardBody }: LoadingProp) {
   return (
     <>
-      <Card.Title className="card-title">{LOADING}</Card.Title>
-      <p>{cardBody}</p>
+      <Card.Title className="loading">{LOADING}</Card.Title>
       <ProgressBar now={now} />
     </>
   );
