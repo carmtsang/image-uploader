@@ -9,7 +9,7 @@ export default function LoadingCard({ now, cardBody }: LoadingProp) {
   return (
     <>
       <Card.Title className="loading">{LOADING}</Card.Title>
-      <ProgressBar now={now} />
+      <ProgressBar now={now} id="progress-bar" />
     </>
   );
 }

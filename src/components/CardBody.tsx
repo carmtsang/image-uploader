@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import UploadCard from './UploadCard';
 import LoadingCard from './LoadingCard';
@@ -10,6 +10,10 @@ export default function CardBody() {
   const [urls, setUrls] = useState<string[]>([]);
 
   const handleCardChange = (num: number) => setCardBody(num);
+
+  useEffect(() => {
+    progress === 100 && handleCardChange(2);
+  }, [progress]);
 
   return (
     <Card border="light" className="content-card text-center">

@@ -23,7 +23,7 @@
 
 .content-card {
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 1rem;
   width: 402px;
   box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1); }
 
@@ -44,7 +44,6 @@
   padding-bottom: 2.25rem; }
 
 .uploaded-img {
-  max-width: 338px;
   border-radius: 12px;
   margin: 1.5rem 0; }
 
@@ -57,3 +56,6 @@
 
 .loading {
   align-self: flex-start; }
+
+#progress-bar {
+  margin-top: 1rem; }
