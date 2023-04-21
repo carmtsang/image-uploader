@@ -1,13 +1,14 @@
-import { Fragment } from 'react';
+import { Dispatch, Fragment, SetStateAction } from 'react';
 import { Image, InputGroup, Button, Form, Card } from 'react-bootstrap';
 import DoneCheck from '../images/done_FILL1_wght600_GRAD0_opsz48.svg';
 const SUCCESSFUL_MESSAGE = 'Uploaded Successfully!';
 
 export interface SuccessfulProps {
   urls: string[];
+  setCardBody: Dispatch<SetStateAction<number>>;
 }
 
-export default function SuccessfulCard({ urls }: SuccessfulProps) {
+export default function SuccessfulCard({ urls, setCardBody }: SuccessfulProps) {
   return (
     <>
       <Image src={DoneCheck} className="done-check" />
@@ -33,6 +34,10 @@ export default function SuccessfulCard({ urls }: SuccessfulProps) {
             </InputGroup>
           </Fragment>
         ))}
+
+      <Button variant="outline-secondary" onClick={() => setCardBody(0)}>
+        New Upload
+      </Button>
     </>
   );
 }

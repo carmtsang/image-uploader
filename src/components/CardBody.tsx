@@ -23,7 +23,9 @@ export default function CardBody() {
         />
       )}
       {cardBody === 1 && <LoadingCard now={progress} cardBody={cardBody} />}
-      {cardBody === 2 && <SuccessfulCard urls={urls} />}
+      {cardBody === 2 && (
+        <SuccessfulCard setCardBody={setCardBody} urls={urls} />
+      )}
     </Card>
   );
 }
