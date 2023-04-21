@@ -13,6 +13,11 @@ export default function CardBody() {
     progress === 100 && setCardBody(2);
   }, [progress]);
 
+  const resetUploader = () => {
+    setCardBody(0);
+    setUrls([]);
+  };
+
   return (
     <Card border="light" className="content-card text-center">
       {cardBody === 0 && (
@@ -24,7 +29,7 @@ export default function CardBody() {
       )}
       {cardBody === 1 && <LoadingCard now={progress} cardBody={cardBody} />}
       {cardBody === 2 && (
-        <SuccessfulCard setCardBody={setCardBody} urls={urls} />
+        <SuccessfulCard resetUploader={resetUploader} urls={urls} />
       )}
     </Card>
   );
