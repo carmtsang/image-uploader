@@ -7,10 +7,6 @@ export interface SuccessfulProps {
   urls: string[];
 }
 
-const handleCopy = (url: string) => {
-  navigator.clipboard.writeText(url);
-};
-
 export default function SuccessfulCard({ urls }: SuccessfulProps) {
   return (
     <>
@@ -30,7 +26,7 @@ export default function SuccessfulCard({ urls }: SuccessfulProps) {
               <Button
                 className="copy-btn"
                 variant="primary"
-                onClick={() => handleCopy(url)}
+                onClick={() => navigator.clipboard.writeText(url)}
               >
                 Copy Link
               </Button>

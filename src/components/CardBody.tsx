@@ -9,10 +9,8 @@ export default function CardBody() {
   const [cardBody, setCardBody] = useState(0);
   const [urls, setUrls] = useState<string[]>([]);
 
-  const handleCardChange = (num: number) => setCardBody(num);
-
   useEffect(() => {
-    progress === 100 && handleCardChange(2);
+    progress === 100 && setCardBody(2);
   }, [progress]);
 
   return (
@@ -21,7 +19,7 @@ export default function CardBody() {
         <UploadCard
           setProgress={setProgress}
           setUrls={setUrls}
-          handleCardChange={handleCardChange}
+          setCardBody={setCardBody}
         />
       )}
       {cardBody === 1 && <LoadingCard now={progress} cardBody={cardBody} />}

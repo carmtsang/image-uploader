@@ -8,13 +8,13 @@ const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 
 export interface UploaderProp {
   setProgress: Dispatch<SetStateAction<number>>;
-  handleCardChange: (num: number) => void;
+  setCardBody: Dispatch<SetStateAction<number>>;
   setUrls: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function UploadCard({
   setProgress,
-  handleCardChange,
+  setCardBody,
   setUrls
 }: UploaderProp) {
   return (
@@ -25,7 +25,7 @@ export default function UploadCard({
         <div className="image-uploader">
           <Uploader
             setProgress={setProgress}
-            handleCardChange={handleCardChange}
+            setCardBody={setCardBody}
             setUrls={setUrls}
           />
         </div>
