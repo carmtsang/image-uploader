@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import UploadImage from '../../images/image.svg';
@@ -19,13 +19,6 @@ export default function Uploader({
   setCardBody,
   setUrls
 }: UploaderProp) {
-  const [selectedFiles, setSelectedFiles] = useState<UploadableFile[]>([]);
-
-  // for previewing upload before hand. Do i want to implement this...
-  const resetUploader = () => {
-    setSelectedFiles([]);
-  };
-
   // const handleUpload = async (files: File[]) => {
   //   try {
   //     if (!files.length || files === null) return;
@@ -50,8 +43,6 @@ export default function Uploader({
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      const accepted = acceptedFiles.map((file) => ({ file }));
-      setSelectedFiles((curr) => [...curr, ...accepted]);
       const handleUpload = (files: File[]) => {
         if (!files.length || files === null) return;
         setCardBody(1);
@@ -83,7 +74,7 @@ export default function Uploader({
     [setCardBody, setProgress, setUrls]
   );
 
-  const { getRootProps, open, getInputProps, acceptedFiles } = useDropzone({
+  const { getRootProps, open, getInputProps } = useDropzone({
     onDrop,
     multiple: true
   });
