@@ -8,16 +8,17 @@
 }
 
 #content-wrap {
-  padding-bottom: 2.5rem; // for footer
+  padding-bottom: 3rem; // for footer
   margin: auto;
   padding: 0.25rem;
+  position: relative;
 }
 
 #footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;
+  height: 2.5rem; // fotoer height
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -29,6 +30,7 @@
   padding: 1rem;
   width: 402px;
   box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1);
+  margin: 2.5rem 0 2.5rem 0;
 }
 
 .drop-area {
@@ -66,6 +68,6 @@
   align-self: flex-start;
 }
 
-#progress-bar {
+.spacing {
   margin-top: 1rem;
 }
