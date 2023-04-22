@@ -16,6 +16,14 @@ export default function SuccessfulCard({
     <>
       <Image src={DoneCheck} className="done-check" />
       <Card.Title>{SUCCESSFUL_MESSAGE}</Card.Title>
+      <Button
+        variant="outline-secondary"
+        id="new-upload-btn"
+        className="spacing"
+        onClick={() => resetUploader()}
+      >
+        New Upload
+      </Button>
       {urls.length > 0 &&
         urls.map((url, index) => (
           <Fragment key={url}>
@@ -37,10 +45,6 @@ export default function SuccessfulCard({
             </InputGroup>
           </Fragment>
         ))}
-
-      <Button variant="outline-secondary" onClick={() => resetUploader()}>
-        New Upload
-      </Button>
     </>
   );
 }
