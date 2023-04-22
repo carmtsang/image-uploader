@@ -1,15 +1,24 @@
-import { Card, ProgressBar } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import UploadProgress from './UploadProgress';
+import { UploadableFile } from './CardBody';
 const LOADING = 'Loading...';
 
 export interface LoadingProp {
-  now: number;
-  cardBody: number;
+  progress: number;
+  files: UploadableFile[];
 }
-export default function LoadingCard({ now, cardBody }: LoadingProp) {
+export default function LoadingCard({ progress, files }: LoadingProp) {
   return (
     <>
       <Card.Title className="loading">{LOADING}</Card.Title>
-      <ProgressBar now={now} id="progress-bar" />
+      {files &&
+        files.map((file) => (
+          <UploadProgress
+            key={file.file.name}
+            file={file.file}
+            progress={progress}
+          />
+        ))}
     </>
   );
 }
