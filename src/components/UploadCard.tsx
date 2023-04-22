@@ -1,78 +1,56 @@
-import React, { Dispatch, SetStateAction, useCallback } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { Card, Image, Button } from 'react-bootstrap';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../firebase/firebaseSetup';
 import { useDropzone } from 'react-dropzone';
 
 import UploadImage from '../images/image.svg';
+import { UploadableFile } from './CardBody';
+import LoadingCard from './LoadingCard';
 
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
 const OR = 'or';
 
 export interface UploaderProp {
-  setProgress: Dispatch<SetStateAction<number>>;
   setCardBody: Dispatch<SetStateAction<number>>;
   setUrls: Dispatch<SetStateAction<string[]>>;
-  setFiles: Dispatch<SetStateAction<File[]>>;
 }
 
-export default function UploadCard({
-  setProgress,
-  setCardBody,
-  setUrls,
-  setFiles
-}: UploaderProp) {
-  // const handleUpload = async (files: File[]) => {
-  //   try {
-  //     if (!files.length || files === null) return;
-  //     await Promise.all(
-  //       files.map(async (file) => {
-  //         const imageRef = ref(
-  //           storage,
-  //           `images/${file.lastModified}${file.name}`
+export default function UploadCard({ setCardBody, setUrls }: UploaderProp) {
+  const [files, setFiles] = useState<UploadableFile[]>([]);
+
+  // const handleUpload = (files: File[]) => {
+  //   if (!files.length || files === null) return;
+  //   setCardBody(1);
+  //   return files.forEach((file) => {
+  //     const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
+  //     const uploadTask = uploadBytesResumable(imageRef, file);
+
+  //     uploadTask.on(
+  //       'state_changed',
+  //       (snapshot) => {
+  //         const progress = Math.round(
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
   //         );
-  //         await uploadBytesResumable(imageRef, file);
-  //         const url = await getDownloadURL(imageRef);
-  //         setUrls((prev) => [...prev, url]);
-  //         console.log('uploaded');
-  //       })
+  //         setProgress(progress);
+  //       },
+  //       (error) => console.log(error),
+  //       () =>
+  //         getDownloadURL(imageRef).then((url) =>
+  //           setUrls((prev) => [...prev, url])
+  //         )
   //     );
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     handleCardChange(2);
-  //   }
+  //   });
   // };
 
-  const handleUpload = (files: File[]) => {
-    if (!files.length || files === null) return;
-    setCardBody(1);
-    return files.forEach((file) => {
-      const imageRef = ref(storage, `images/${file.lastModified}${file.name}`);
-      const uploadTask = uploadBytesResumable(imageRef, file);
-
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setProgress(progress);
-        },
-        (error) => console.log(error),
-        () =>
-          getDownloadURL(imageRef).then((url) =>
-            setUrls((prev) => [...prev, url])
-          )
-      );
-    });
-  };
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Do something with the files
-    acceptedFiles.map((file) => setFiles((prev) => [...prev, file]));
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const mappedFiles = acceptedFiles.map((file) => ({ file }));
+      mappedFiles.map((file) => setFiles((prev) => [...prev, file]));
+    },
+    [setFiles]
+  );
 
   const { getRootProps, open, getInputProps } = useDropzone({
     onDrop,
@@ -94,6 +72,7 @@ export default function UploadCard({
           <Button onClick={open}>Choose a File</Button>
         </div>
       </Card.Body>
+      <LoadingCard setFiles={setFiles} files={files} setUrls={setUrls} />
     </>
   );
 }
