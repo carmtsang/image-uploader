@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { Card, Image, Button } from 'react-bootstrap';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from '../firebase/firebaseSetup';
+
 import { useDropzone } from 'react-dropzone';
 
 import UploadImage from '../images/image.svg';
@@ -10,6 +9,7 @@ import LoadingCard from './LoadingCard';
 
 const UPLOAD_TITLE = 'Upload your image';
 const UPLOAD_DESCRIPTION = 'File should be Jpeg, Png...';
+const LOADING = 'Loading...';
 const OR = 'or';
 
 export interface UploaderProp {
@@ -19,6 +19,8 @@ export interface UploaderProp {
 
 export default function UploadCard({ setCardBody, setUrls }: UploaderProp) {
   const [files, setFiles] = useState<UploadableFile[]>([]);
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   // const handleUpload = (files: File[]) => {
   //   if (!files.length || files === null) return;
@@ -44,22 +46,19 @@ export default function UploadCard({ setCardBody, setUrls }: UploaderProp) {
   //   });
   // };
 
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const mappedFiles = acceptedFiles.map((file) => ({ file }));
-      mappedFiles.map((file) => setFiles((prev) => [...prev, file]));
-    },
-    [setFiles]
-  );
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const mappedFiles = acceptedFiles.map((file) => ({ file }));
+    mappedFiles.map((file) => setFiles((prev) => [...prev, file]));
+    setLoading(true);
+  }, []);
 
   const { getRootProps, open, getInputProps } = useDropzone({
     onDrop,
     multiple: true
   });
 
-  return (
-    <>
-      <Card.Title>{UPLOAD_TITLE}</Card.Title>
+  const uploadBody = () => {
+    return (
       <Card.Body id="upload-section">
         {UPLOAD_DESCRIPTION}
         <div className="image-uploader">
@@ -72,7 +71,19 @@ export default function UploadCard({ setCardBody, setUrls }: UploaderProp) {
           <Button onClick={open}>Choose a File</Button>
         </div>
       </Card.Body>
-      <LoadingCard setFiles={setFiles} files={files} setUrls={setUrls} />
+    );
+  };
+
+  return (
+    <>
+      <Card.Title className={loading ? 'loading' : ''}>
+        {loading ? LOADING : UPLOAD_TITLE}
+      </Card.Title>
+      {loading ? (
+        <LoadingCard setFiles={setFiles} files={files} setUrls={setUrls} />
+      ) : (
+        uploadBody()
+      )}
     </>
   );
 }
