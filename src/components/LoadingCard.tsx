@@ -4,10 +4,8 @@ import { Dispatch, SetStateAction } from 'react';
 
 export interface LoadingProp {
   files: UploadableFile[];
-  setUrls: Dispatch<SetStateAction<string[]>>;
-  setFiles: Dispatch<SetStateAction<UploadableFile[]>>;
 }
-export default function LoadingCard({ files, setUrls }: LoadingProp) {
+export default function LoadingCard({ files }: LoadingProp) {
   return (
     <>
       {files &&
@@ -15,7 +13,7 @@ export default function LoadingCard({ files, setUrls }: LoadingProp) {
           <UploadProgress
             key={file.file.name}
             file={file.file}
-            setUrls={setUrls}
+            progress={file.progress}
           />
         ))}
     </>

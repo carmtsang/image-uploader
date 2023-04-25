@@ -13,13 +13,10 @@ const LOADING = 'Loading...';
 const OR = 'or';
 
 export interface UploaderProp {
-  setCardBody: Dispatch<SetStateAction<number>>;
-  setUrls: Dispatch<SetStateAction<string[]>>;
+  setFiles: Dispatch<SetStateAction<UploadableFile[]>>;
 }
 
-export default function UploadCard({ setCardBody, setUrls }: UploaderProp) {
-  const [files, setFiles] = useState<UploadableFile[]>([]);
-
+export default function UploadCard({ setFiles }: UploaderProp) {
   const [loading, setLoading] = useState<boolean>(false);
 
   // const handleUpload = (files: File[]) => {
@@ -80,7 +77,7 @@ export default function UploadCard({ setCardBody, setUrls }: UploaderProp) {
         {loading ? LOADING : UPLOAD_TITLE}
       </Card.Title>
       {loading ? (
-        <LoadingCard setFiles={setFiles} files={files} setUrls={setUrls} />
+        <LoadingCard setFiles={setFiles} files={files} />
       ) : (
         uploadBody()
       )}

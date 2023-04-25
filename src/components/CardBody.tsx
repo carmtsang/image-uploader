@@ -5,26 +5,20 @@ import SuccessfulCard from './SuccessfulCard';
 
 export interface UploadableFile {
   file: File;
+  progress?: number | undefined;
+  url?: string | undefined;
 }
 
 export default function CardBody() {
-  const [cardBody, setCardBody] = useState(0);
-
-  const [urls, setUrls] = useState<string[]>([]);
-
+  const [files, setFiles] = useState<UploadableFile[]>([]);
   // useEffect(() => {
   //   progress === 100 && setCardBody(2);
   // }, [progress]);
 
-  const resetUploader = () => {
-    setCardBody(0);
-    setUrls([]);
-  };
-
   return (
     <Card border="light" className="content-card text-center">
-      <UploadCard setUrls={setUrls} setCardBody={setCardBody} />
-      <SuccessfulCard resetUploader={resetUploader} urls={urls} />
+      <UploadCard setFiles={setFiles} />
+      <SuccessfulCard setFiles={setFiles} files={files} />
     </Card>
   );
 }
