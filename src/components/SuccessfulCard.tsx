@@ -5,11 +5,28 @@ import { UploadableFile } from './CardBody';
 const SUCCESSFUL_MESSAGE = 'Uploaded Successfully!';
 
 export interface SuccessfulProps {
-  files: UploadableFile[];
+  urls: string[];
+  setUrls: Dispatch<SetStateAction<string[]>>;
   setFiles: Dispatch<SetStateAction<UploadableFile[]>>;
 }
 
-export default function SuccessfulCard({ setFiles, files }: SuccessfulProps) {
+export default function SuccessfulCard({
+  setUrls,
+  setFiles,
+  urls
+}: SuccessfulProps) {
+  const handleCopy = (url: string | undefined) => {
+    if (!url) {
+      return;
+    }
+    return navigator.clipboard.writeText(url);
+  };
+
+  const handleNewUpload = () => {
+    setFiles([]);
+    setUrls([]);
+  };
+
   return (
     <>
       <Image src={DoneCheck} className="done-check" />
@@ -18,29 +35,25 @@ export default function SuccessfulCard({ setFiles, files }: SuccessfulProps) {
         variant="outline-secondary"
         id="new-upload-btn"
         className="spacing"
-        onClick={() => setFiles([])}
+        onClick={() => handleNewUpload()}
       >
         New Upload
       </Button>
-      {files.length > 0 &&
-        files.map((file, index) => (
-          <Fragment key={file.file.name}>
+      {urls.length > 0 &&
+        urls.map((url, index) => (
+          <Fragment key={`url-${index}`}>
             <Image
-              src={file?.url}
+              src={url}
               alt="uploaded image"
               id={`image-${index}`}
               className="uploaded-img"
             />
             <InputGroup className="mb-3">
-              <Form.Control
-                value={file?.url}
-                id={`image-url-${index}`}
-                readOnly
-              />
+              <Form.Control value={url} id={`image-url-${index}`} readOnly />
               <Button
                 className="copy-btn"
                 variant="primary"
-                onClick={() => navigator.clipboard.writeText(file?.url)}
+                onClick={() => handleCopy(url)}
               >
                 Copy Link
               </Button>

@@ -29,6 +29,9 @@
   box-shadow: 0.5px 3px 4px 1px rgba(0, 0, 0, 0.1);
   margin: 2.5rem 0 2.5rem 0; }
 
+.content-card .container {
+  padding: 0; }
+
 .drop-area {
   background: #f6f8fb;
   height: 219px;
