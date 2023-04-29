@@ -71,9 +71,9 @@ export default function UploadCard({ setFiles, files, setUrls }: UploaderProp) {
     });
   };
 
-  const handleDelete = (file: UploadableFile) => {
+  const handleDelete = (fileName: string) => {
     const updatedFiles = files.filter(
-      (fileWrapper) => fileWrapper.file.name !== file.file.name
+      (fileWrapper) => fileWrapper.file.name !== fileName
     );
     setFiles(updatedFiles);
   };

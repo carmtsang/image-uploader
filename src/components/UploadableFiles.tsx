@@ -5,7 +5,7 @@ import remove from '../images/close_FILL0_wght400_GRAD0_opsz48.svg';
 export interface UploadableFilesProps {
   files: UploadableFile[];
   handleUpload: (files: UploadableFile[]) => void;
-  handleDelete: (file: UploadableFile) => void;
+  handleDelete: (fileName: string) => void;
 }
 
 export default function UploadableFiles({
@@ -15,7 +15,7 @@ export default function UploadableFiles({
 }: UploadableFilesProps) {
   return (
     <Container>
-      <Button variant="secondary-outline" onClick={() => handleUpload(files)}>
+      <Button variant="outline-secondary" onClick={() => handleUpload(files)}>
         Upload
       </Button>
       {files &&
@@ -25,7 +25,7 @@ export default function UploadableFiles({
             <Col sm={2}>
               <Image
                 src={remove}
-                onClick={() => handleDelete}
+                onClick={() => handleDelete(fileWrapper.file.name)}
                 roundedCircle
                 width={20}
               />
