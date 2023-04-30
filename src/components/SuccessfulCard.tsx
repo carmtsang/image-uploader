@@ -8,12 +8,14 @@ export interface SuccessfulProps {
   urls: string[];
   setUrls: Dispatch<SetStateAction<string[]>>;
   setFiles: Dispatch<SetStateAction<UploadableFile[]>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function SuccessfulCard({
   setUrls,
   setFiles,
-  urls
+  urls,
+  setLoading
 }: SuccessfulProps) {
   const handleCopy = (url: string | undefined) => {
     if (!url) {
@@ -25,10 +27,11 @@ export default function SuccessfulCard({
   const handleNewUpload = () => {
     setFiles([]);
     setUrls([]);
+    setLoading(false);
   };
 
   return (
-    <>
+    <Card.Body>
       <Image src={DoneCheck} className="done-check" />
       <Card.Title>{SUCCESSFUL_MESSAGE}</Card.Title>
       <Button
@@ -60,6 +63,6 @@ export default function SuccessfulCard({
             </InputGroup>
           </Fragment>
         ))}
-    </>
+    </Card.Body>
   );
 }

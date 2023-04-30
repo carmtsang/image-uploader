@@ -21,13 +21,14 @@ export default function UploadableFiles({
       {files &&
         files.map((fileWrapper) => (
           <Row key={fileWrapper.file.name}>
-            <Col sm={10}>{fileWrapper.file.name}</Col>
+            <Col sm={10}>
+              {fileWrapper.file.name} - {fileWrapper.file.size} bytes
+            </Col>
             <Col sm={2}>
               <Image
                 src={remove}
                 className="close-item"
                 onClick={() => handleDelete(fileWrapper.file.name)}
-                roundedCircle
                 width={20}
               />
             </Col>

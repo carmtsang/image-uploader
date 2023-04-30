@@ -11,11 +11,25 @@ export interface UploadableFile {
 export default function CardBody() {
   const [files, setFiles] = useState<UploadableFile[]>([] as UploadableFile[]);
   const [urls, setUrls] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
+  console.log('files', files);
+  console.log('urls', urls);
   return (
     <Card border="light" className="content-card text-center">
-      <UploadCard setFiles={setFiles} files={files} setUrls={setUrls} />
-      <SuccessfulCard setUrls={setUrls} urls={urls} setFiles={setFiles} />
+      <UploadCard
+        setFiles={setFiles}
+        files={files}
+        setUrls={setUrls}
+        loading={loading}
+        setLoading={setLoading}
+      />
+      <SuccessfulCard
+        setUrls={setUrls}
+        urls={urls}
+        setFiles={setFiles}
+        setLoading={setLoading}
+      />
     </Card>
   );
 }

@@ -14,7 +14,7 @@ export default function UploadProgress({
     <Row>
       <Col>
         <Card.Subtitle className="file-name">{fileName}</Card.Subtitle>
-        <ProgressBar now={progress} id="progress-bar" className="spacing" />
+        <ProgressBar now={progress} className="progress-bar spacing" />
       </Col>
     </Row>
   );

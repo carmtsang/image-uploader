@@ -1,12 +1,13 @@
 import UploadProgress from './UploadProgress';
 import { UploadableFile } from './CardBody';
+import { Card } from 'react-bootstrap';
 
 export interface LoadingProp {
   files: UploadableFile[];
 }
 export default function LoadingCard({ files }: LoadingProp) {
   return (
-    <>
+    <Card.Body>
       {files &&
         files.map((fileWrapper) => (
           <UploadProgress
@@ -15,6 +16,6 @@ export default function LoadingCard({ files }: LoadingProp) {
             progress={fileWrapper.progress}
           />
         ))}
-    </>
+    </Card.Body>
   );
 }

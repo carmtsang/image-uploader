@@ -19,30 +19,17 @@ export interface UploaderProp {
   setFiles: Dispatch<SetStateAction<UploadableFile[]>>;
   files: UploadableFile[];
   setUrls: Dispatch<SetStateAction<string[]>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  loading: boolean;
 }
 
-export default function UploadCard({ setFiles, files, setUrls }: UploaderProp) {
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const fileUpdate = (
-    fileWrapper: UploadableFile,
-    prop: string,
-    value: string | number
-  ) => {
-    const updatedFile = files.map((fileWrap) => {
-      if (fileWrap.file.name === fileWrapper.file.name) {
-        return {
-          ...fileWrapper,
-          [prop]: value
-        };
-      }
-      return fileWrap;
-    });
-    console.log('updated', updatedFile);
-    setFiles((prev) => [...prev, ...updatedFile]);
-    console.log(files);
-  };
-
+export default function UploadCard({
+  setFiles,
+  files,
+  setUrls,
+  loading,
+  setLoading
+}: UploaderProp) {
   const handleUpload = (files: UploadableFile[]) => {
     if (!files.length || files === null) return;
     setLoading(true);
@@ -51,21 +38,29 @@ export default function UploadCard({ setFiles, files, setUrls }: UploaderProp) {
         storage,
         `images/${fileWrapper.file.lastModified}${fileWrapper.file.name}`
       );
-      console.log('imageRef', imageRef);
+
       const uploadTask = uploadBytesResumable(imageRef, fileWrapper.file);
-      console.log('ref: ', imageRef);
       uploadTask.on(
         'state_changed',
         (snapshot) => {
           const progress = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
-          fileUpdate(fileWrapper, 'progress', progress);
+          const updated = files.map((fileWrap) => {
+            if (fileWrap.file.name === fileWrapper.file.name) {
+              return {
+                ...fileWrapper,
+                progress
+              };
+            }
+            return fileWrap;
+          });
+          setFiles(updated);
         },
         (error) => console.log(error),
         () =>
           getDownloadURL(imageRef).then((url) =>
-            fileUpdate(fileWrapper, 'url', url)
+            setUrls((prev) => [...prev, url])
           )
       );
     });
@@ -88,7 +83,8 @@ export default function UploadCard({ setFiles, files, setUrls }: UploaderProp) {
 
   const { getRootProps, open, getInputProps } = useDropzone({
     onDrop,
-    multiple: true
+    multiple: true,
+    accept: { 'image/png': ['.png', '.jpeg', '.jpg'] }
   });
 
   const uploadBody = () => {
