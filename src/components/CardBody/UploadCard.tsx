@@ -36,43 +36,6 @@ export default function UploadCard({
   setLoading,
   resetUpload
 }: UploaderProp) {
-  // const handleUpload = (files: UploadableFile[]) => {
-  //   if (!files.length) return;
-  //   setLoading(true);
-
-  //   return files.forEach((fileWrapper) => {
-  //     const imageRef = ref(
-  //       storage,
-  //       `images/${fileWrapper.file.lastModified}${fileWrapper.file.name}`
-  //     );
-
-  //     const uploadTask = uploadBytesResumable(imageRef, fileWrapper.file);
-  //     uploadTask.on(
-  //       'state_changed',
-  //       (snapshot) => {
-  //         const progress = Math.round(
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //         );
-  //         const updated = files.map((fileWrap) => {
-  //           if (fileWrap.file.name === fileWrapper.file.name) {
-  //             return {
-  //               ...fileWrapper,
-  //               progress
-  //             };
-  //           }
-  //           return fileWrap;
-  //         });
-  //         setFiles(updated);
-  //       },
-  //       (error) => console.log(error),
-  //       () =>
-  //         getDownloadURL(imageRef).then((url) =>
-  //           setUrls((prev) => [...prev, url])
-  //         )
-  //     );
-  //   });
-  // };
-
   const handleUpload = async (files: UploadableFile[]) => {
     setLoading(true);
     try {
@@ -127,7 +90,7 @@ export default function UploadCard({
       </Card.Title>
 
       {loading ? (
-        <LoadingCard files={files} />
+        <LoadingCard />
       ) : (
         <Card.Body id="upload-section">
           {UPLOAD_DESCRIPTION}

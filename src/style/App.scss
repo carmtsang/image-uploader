@@ -38,6 +38,11 @@
   }
   .row {
     padding-top: 0.5rem;
+
+    p {
+      margin: 0;
+      text-align: left;
+    }
   }
   .uploaded-img {
     border-radius: 12px;
@@ -48,6 +53,11 @@
 
 .content-card.hidden {
   display: none;
+}
+
+.file-size {
+  font-size: small;
+  color: #3c4048;
 }
 
 .drop-area {
@@ -93,8 +103,7 @@
     brightness(90%) contrast(93%);
 }
 
-.progress.indeterminate {
-  width: 336px;
+.progress-bar.indeterminate {
   position: relative;
   animation: progress-indeterminate 3s linear infinite;
 }

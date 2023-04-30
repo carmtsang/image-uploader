@@ -22,7 +22,8 @@ export default function UploadableFiles({
         files.map((fileWrapper) => (
           <Row key={fileWrapper.file.name}>
             <Col sm={10}>
-              {fileWrapper.file.name} - {fileWrapper.file.size} bytes
+              <p className="file-name">{fileWrapper.file.name} </p>
+              <p className="file-size">- {fileWrapper.file.size} bytes</p>
             </Col>
             <Col sm={2}>
               <Image

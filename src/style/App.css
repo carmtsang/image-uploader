@@ -36,6 +36,10 @@
 .content-card .row {
   padding-top: 0.5rem; }
 
+.content-card .row p {
+  margin: 0;
+  text-align: left; }
+
 .content-card .uploaded-img {
   border-radius: 12px;
   margin: 1.5rem 0;
@@ -43,6 +47,10 @@
 
 .content-card.hidden {
   display: none; }
+
+.file-size {
+  font-size: small;
+  color: #3c4048; }
 
 .drop-area {
   background: #f6f8fb;
@@ -80,8 +88,7 @@
   transform: scale(1.25);
   filter: invert(24%) sepia(90%) saturate(2459%) hue-rotate(341deg) brightness(90%) contrast(93%); }
 
-.progress.indeterminate {
-  width: 336px;
+.progress-bar.indeterminate {
   position: relative;
   animation: progress-indeterminate 3s linear infinite; }
 

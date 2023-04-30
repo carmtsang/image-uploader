@@ -4,7 +4,6 @@ import SuccessfulCard from './SuccessfulCard';
 
 export interface UploadableFile {
   file: File;
-  progress?: number | undefined;
 }
 
 export default function CardBody() {

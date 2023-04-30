@@ -15,9 +15,7 @@ export default function SuccessfulCard({
   handleNewUpload
 }: SuccessfulProps) {
   const handleCopy = (url: string | undefined) => {
-    if (!url) {
-      return;
-    }
+    if (!url) return;
     return navigator.clipboard.writeText(url);
   };
 
