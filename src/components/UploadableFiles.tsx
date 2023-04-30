@@ -25,6 +25,7 @@ export default function UploadableFiles({
             <Col sm={2}>
               <Image
                 src={remove}
+                className="close-item"
                 onClick={() => handleDelete(fileWrapper.file.name)}
                 roundedCircle
                 width={20}

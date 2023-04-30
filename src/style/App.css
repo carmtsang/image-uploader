@@ -68,3 +68,10 @@
 
 .spacing {
   margin-top: 1rem; }
+
+.close-item {
+  cursor: pointer; }
+
+.close-item:hover {
+  transform: scale(1.25);
+  filter: invert(24%) sepia(90%) saturate(2459%) hue-rotate(341deg) brightness(90%) contrast(93%); }
