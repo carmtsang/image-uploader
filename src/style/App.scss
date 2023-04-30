@@ -39,6 +39,11 @@
   .row {
     padding-top: 0.5rem;
   }
+  .uploaded-img {
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    padding: 0;
+  }
 }
 
 .content-card.hidden {
@@ -61,11 +66,6 @@
 #upload-box-image {
   padding-top: 2rem;
   padding-bottom: 2.25rem;
-}
-
-.uploaded-img {
-  border-radius: 12px;
-  margin: 1.5rem 0;
 }
 
 .done-check {
@@ -91,4 +91,20 @@
   transform: scale(1.25);
   filter: invert(24%) sepia(90%) saturate(2459%) hue-rotate(341deg)
     brightness(90%) contrast(93%);
+}
+
+.progress.indeterminate {
+  width: 336px;
+  position: relative;
+  animation: progress-indeterminate 3s linear infinite;
+}
+@keyframes progress-indeterminate {
+  from {
+    left: -25%;
+    width: 25%;
+  }
+  to {
+    left: 100%;
+    width: 25%;
+  }
 }

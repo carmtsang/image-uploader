@@ -45,6 +45,7 @@ export default function SuccessfulCard({
                 alt="uploaded image"
                 id={`image-${index}`}
                 className="uploaded-img"
+                width="336"
               />
               <InputGroup className="mb-3">
                 <Form.Control value={url} id={`image-url-${index}`} readOnly />

@@ -20,8 +20,6 @@ export default function CardBody() {
     setShowSuccessful(false);
   };
 
-  console.log('files', files);
-  console.log('urls', urls);
   return (
     <>
       <UploadCard
@@ -32,6 +30,7 @@ export default function CardBody() {
         showSuccessful={showSuccessful}
         loading={loading}
         setLoading={setLoading}
+        resetUpload={resetUpload}
       />
       <SuccessfulCard
         urls={urls}

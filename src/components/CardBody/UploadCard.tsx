@@ -23,6 +23,7 @@ export interface UploaderProp {
   loading: boolean;
   showSuccessful: boolean;
   setShowSuccessful: Dispatch<SetStateAction<boolean>>;
+  resetUpload: () => void;
 }
 
 export default function UploadCard({
@@ -32,46 +33,66 @@ export default function UploadCard({
   loading,
   showSuccessful,
   setShowSuccessful,
-  setLoading
+  setLoading,
+  resetUpload
 }: UploaderProp) {
-  const handleUpload = (files: UploadableFile[]) => {
+  // const handleUpload = (files: UploadableFile[]) => {
+  //   if (!files.length) return;
+  //   setLoading(true);
+
+  //   return files.forEach((fileWrapper) => {
+  //     const imageRef = ref(
+  //       storage,
+  //       `images/${fileWrapper.file.lastModified}${fileWrapper.file.name}`
+  //     );
+
+  //     const uploadTask = uploadBytesResumable(imageRef, fileWrapper.file);
+  //     uploadTask.on(
+  //       'state_changed',
+  //       (snapshot) => {
+  //         const progress = Math.round(
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //         );
+  //         const updated = files.map((fileWrap) => {
+  //           if (fileWrap.file.name === fileWrapper.file.name) {
+  //             return {
+  //               ...fileWrapper,
+  //               progress
+  //             };
+  //           }
+  //           return fileWrap;
+  //         });
+  //         setFiles(updated);
+  //       },
+  //       (error) => console.log(error),
+  //       () =>
+  //         getDownloadURL(imageRef).then((url) =>
+  //           setUrls((prev) => [...prev, url])
+  //         )
+  //     );
+  //   });
+  // };
+
+  const handleUpload = async (files: UploadableFile[]) => {
     setLoading(true);
-
     try {
-      files.forEach((fileWrapper) => {
-        const imageRef = ref(
-          storage,
-          `images/${fileWrapper.file.lastModified}${fileWrapper.file.name}`
-        );
-
-        const uploadTask = uploadBytesResumable(imageRef, fileWrapper.file);
-        uploadTask.on(
-          'state_changed',
-          (snapshot) => {
-            const progress = Math.round(
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-            const updated = files.map((fileWrap) => {
-              if (fileWrap.file.name === fileWrapper.file.name) {
-                return {
-                  ...fileWrapper,
-                  progress
-                };
-              }
-              return fileWrap;
-            });
-            setFiles(updated);
-          },
-          (error) => console.log(error),
-          () =>
-            getDownloadURL(imageRef).then((url) =>
-              setUrls((prev) => [...prev, url])
-            )
-        );
-      });
-      return setShowSuccessful(true);
-    } catch (e) {
-      console.error(e);
+      if (!files.length || files === null) return;
+      await Promise.all(
+        files.map(async (fileWrap) => {
+          const imageRef = ref(
+            storage,
+            `images/${fileWrap.file.lastModified}${fileWrap.file.name}`
+          );
+          await uploadBytesResumable(imageRef, fileWrap.file);
+          const url = await getDownloadURL(imageRef);
+          setUrls((prev) => [...prev, url]);
+          console.log('uploaded');
+          await setShowSuccessful(true);
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      resetUpload();
     }
   };
 
