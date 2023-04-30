@@ -36,6 +36,9 @@
 .content-card .row {
   padding-top: 0.5rem; }
 
+.content-card.hidden {
+  display: none; }
+
 .drop-area {
   background: #f6f8fb;
   height: 219px;

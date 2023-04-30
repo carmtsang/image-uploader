@@ -1,5 +1,5 @@
 import UploadProgress from './UploadProgress';
-import { UploadableFile } from './CardBody';
+import { UploadableFile } from '.';
 import { Card } from 'react-bootstrap';
 
 export interface LoadingProp {

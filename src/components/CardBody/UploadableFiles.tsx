@@ -1,6 +1,6 @@
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
-import { UploadableFile } from './CardBody';
-import remove from '../images/close_FILL0_wght400_GRAD0_opsz48.svg';
+import remove from '../../images/close_FILL0_wght400_GRAD0_opsz48.svg';
+import { UploadableFile } from '.';
 
 export interface UploadableFilesProps {
   files: UploadableFile[];

@@ -1,6 +1,6 @@
 import React from 'react';
-import CardBody from './components/CardBody';
 import Footer from './components/Footer';
+import CardBody from './components/CardBody';
 
 import './style/App.scss';
 
