@@ -23,6 +23,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #3c4048;
+  a {
+    text-decoration: none;
+  }
 }
 
 .content-card {
@@ -65,7 +69,7 @@
   height: 219px;
   width: 338px;
   display: flex;
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
   flex-direction: column;
   align-items: center;
   border-radius: 12px;

@@ -1,8 +1,10 @@
 const Footer = () => {
-  const MESSAGE = 'Created by CarmTsang * devChallenges.io';
   return (
     <div id="footer">
-      <p>{MESSAGE}</p>
+      <p>
+        Created by <a href="https://github.com/carmtsang">carmtsang</a> *
+        devChallenges.io
+      </p>
     </div>
   );
 };
