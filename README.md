@@ -6,11 +6,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
-      Demo
+    <a href="https://github.com/carmtsang/image-uploader">
+      Github
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://image-uploader-34d30.web.app/">
       Solution
     </a>
     <span> | </span>
