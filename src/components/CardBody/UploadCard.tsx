@@ -49,9 +49,7 @@ export default function UploadCard({
           await uploadBytesResumable(imageRef, fileWrap.file);
           const url = await getDownloadURL(imageRef);
           setUrls((prev) => [...prev, url]);
-          console.log('uploaded');
-          await setShowSuccessful(true);
-        })
+        }, await setShowSuccessful(true))
       );
     } catch (error) {
       console.error(error);
