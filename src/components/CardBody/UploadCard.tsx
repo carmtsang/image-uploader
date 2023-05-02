@@ -37,10 +37,10 @@ export default function UploadCard({
   resetUpload
 }: UploaderProp) {
   const handleUpload = async (files: UploadableFile[]) => {
+    if (!files.length || files === null) return;
     setLoading(true);
     try {
-      if (!files.length || files === null) return;
-      await Promise.all(
+      await Promise.allSettled(
         files.map(async (fileWrap) => {
           const imageRef = ref(
             storage,
@@ -49,8 +49,9 @@ export default function UploadCard({
           await uploadBytesResumable(imageRef, fileWrap.file);
           const url = await getDownloadURL(imageRef);
           setUrls((prev) => [...prev, url]);
-        }, await setShowSuccessful(true))
+        })
       );
+      setShowSuccessful(true);
     } catch (error) {
       console.error(error);
       resetUpload();
