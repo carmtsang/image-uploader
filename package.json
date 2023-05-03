@@ -27,7 +27,7 @@
     "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
     "start:js": "react-scripts start",
     "start": "npm-run-all -p watch:css start:js",
-    "build:script": "react-scripts build",
+    "build:script": "react-scripts build && firebase deploy",
     "build": "npm-run-all build:*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
